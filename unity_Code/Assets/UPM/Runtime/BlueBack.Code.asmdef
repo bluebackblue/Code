@@ -1,1 +1,16 @@
-{"name":"BlueBack.Code","rootNamespace":"","references":[],"includePlatforms":[],"excludePlatforms":[],"allowUnsafeCode":false,"overrideReferences":false,"precompiledReferences":[],"autoReferenced":true,"defineConstraints":[],"versionDefines":[],"noEngineReferences":false}
+{
+    "name": "BlueBack.Code",
+    "rootNamespace": "",
+    "references": [
+        "GUID:96df67cbf8a508749b063eade9274e19"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
