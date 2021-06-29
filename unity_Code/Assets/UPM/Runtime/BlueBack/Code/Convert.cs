@@ -17,7 +17,7 @@ namespace BlueBack.Code
 	{
 		/** 置き換え。
 		*/
-		public static string ReplaceString(string a_template,System.Collections.Generic.Dictionary<string,string> a_replace_list)
+		public static string ReplaceString(System.Collections.Generic.Dictionary<string,string> a_replace_list,string a_template)
 		{
 			string t_string = a_template;
 
@@ -40,7 +40,7 @@ namespace BlueBack.Code
 
 		/** 追加。
 		*/
-		public static void Add(string[] a_template,System.Collections.Generic.List<string> a_out_list)
+		public static void Add(System.Collections.Generic.List<string> a_out_list,string[] a_template)
 		{
 			int ii_max = a_template.Length;
 			for(int ii=0;ii<ii_max;ii++){
@@ -50,7 +50,7 @@ namespace BlueBack.Code
 
 		/** 追加。
 		*/
-		public static void Add(System.Collections.Generic.List<string> a_template,System.Collections.Generic.List<string> a_out_list)
+		public static void Add(System.Collections.Generic.List<string> a_out_list,System.Collections.Generic.List<string> a_template)
 		{
 			int ii_max = a_template.Count;
 			for(int ii=0;ii<ii_max;ii++){
@@ -63,7 +63,7 @@ namespace BlueBack.Code
 			「a_template」を「a_count」の数だけ複製、「a_index_key」をインデックスに置換。
 
 		*/
-		public static void Duplicate(string[] a_template,int a_count,string a_index_key,System.Collections.Generic.List<string> a_out_list)
+		public static void Duplicate(System.Collections.Generic.List<string> a_out_list,string a_index_key,int a_count,string[] a_template)
 		{
 			for(int ii=0;ii<a_count;ii++){
 				string ii_string = ii.ToString();
@@ -79,7 +79,7 @@ namespace BlueBack.Code
 			「a_template」を「a_count」の数だけ複製、「a_index_key」をインデックスに置換。
 
 		*/
-		public static void Duplicate(System.Collections.Generic.List<string> a_template,int a_count,string a_index_key,System.Collections.Generic.List<string> a_out_list)
+		public static void Duplicate(System.Collections.Generic.List<string> a_out_list,string a_index_key,int a_count,System.Collections.Generic.List<string> a_template)
 		{
 			for(int ii=0;ii<a_count;ii++){
 				string ii_string = ii.ToString();
@@ -92,23 +92,22 @@ namespace BlueBack.Code
 
 		/** 置き換え。
 		*/
-		public static void Replace(string[] a_template,System.Text.StringBuilder a_stringbuilder,System.Collections.Generic.Dictionary<string,string> a_replace_list)
+		public static void Replace(System.Text.StringBuilder a_stringbuilder,System.Collections.Generic.Dictionary<string,string> a_replace_list,string[] a_template)
 		{
 			int ii_max = a_template.Length;
 			for(int ii=0;ii<ii_max;ii++){
-				a_stringbuilder.Append(ReplaceString(a_template[ii],a_replace_list));
+				a_stringbuilder.Append(ReplaceString(a_replace_list,a_template[ii]));
 				a_stringbuilder.Append("\n");
 			}
 		}
 
-
 		/** 置き換え。
 		*/
-		public static void Replace(System.Collections.Generic.List<string> a_template,System.Text.StringBuilder a_stringbuilder,System.Collections.Generic.Dictionary<string,string> a_replace_list)
+		public static void Replace(System.Text.StringBuilder a_stringbuilder,System.Collections.Generic.Dictionary<string,string> a_replace_list,System.Collections.Generic.List<string> a_template)
 		{
 			int ii_max = a_template.Count;
 			for(int ii=0;ii<ii_max;ii++){
-				a_stringbuilder.Append(ReplaceString(a_template[ii],a_replace_list));
+				a_stringbuilder.Append(ReplaceString(a_replace_list,a_template[ii]));
 				a_stringbuilder.Append("\n");
 			}
 		}

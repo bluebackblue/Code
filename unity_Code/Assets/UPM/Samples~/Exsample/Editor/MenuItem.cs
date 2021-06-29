@@ -22,9 +22,8 @@ namespace Samples.Code.Exsample.Editor
 			};
 
 			System.Collections.Generic.List<string> t_template = new System.Collections.Generic.List<string>();
-
 			{
-				BlueBack.Code.Convert.Add(new string[]{
+				BlueBack.Code.Convert.Add(t_template,new string[]{
 					"/** <<NAMESPACE>>",
 					"*/",
 					"namespace <<NAMESPACE>>",
@@ -33,43 +32,42 @@ namespace Samples.Code.Exsample.Editor
 					"	*/",
 					"	public class <<CLASS>>",
 					"	{",
-				},t_template);
+				});
 
-				BlueBack.Code.Convert.Duplicate(new string[]{
+				BlueBack.Code.Convert.Duplicate(t_template,"<<INDEX>>",t_data.Length,new string[]{
 					"		public int <<VALUE.<<INDEX>>>>;",
-				},t_data.Length,"<<INDEX>>",t_template);
+				});
 
-				BlueBack.Code.Convert.Add(new string[]{
+				BlueBack.Code.Convert.Add(t_template,new string[]{
 					"",
 					"		/** constructor",
 					"		*/",
-					"		public AAA()",
+					"		public <<CLASS>>()",
 					"		{",
-				},t_template);
+				});
 
-				BlueBack.Code.Convert.Duplicate(new string[]{
+				BlueBack.Code.Convert.Duplicate(t_template,"<<INDEX>>",t_data.Length,new string[]{
 					"			<<VALUE.<<INDEX>>>> = 0;",
-				},t_data.Length,"<<INDEX>>",t_template);
+				});
 
-				BlueBack.Code.Convert.Add(new string[]{
+				BlueBack.Code.Convert.Add(t_template,new string[]{
 					"		}",
 					"	}",
 					"}",
-				},t_template);
+				});
 			}
 
 			System.Collections.Generic.Dictionary<string,string> t_replace_list = new System.Collections.Generic.Dictionary<string,string>();
 			{
 				t_replace_list.Add("<<NAMESPACE>>","Aaa");
 				t_replace_list.Add("<<CLASS>>","AAA");
-
 				for(int ii=0;ii<t_data.Length;ii++){
 					t_replace_list.Add("<<VALUE." + ii.ToString()  + ">>",t_data[ii]);
 				}
 			}
 
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
-			BlueBack.Code.Convert.Replace(t_template,t_stringbuilder,t_replace_list);
+			BlueBack.Code.Convert.Replace(t_stringbuilder,t_replace_list,t_template);
 			
 			UnityEngine.Debug.Log(t_stringbuilder.ToString());
 		}
