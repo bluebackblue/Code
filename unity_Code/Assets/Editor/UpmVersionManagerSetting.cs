@@ -91,8 +91,7 @@ namespace Editor
 					(in BlueBack.UpmVersionManager.Editor.Object_Setting.Creator_Argument a_argument) => {
 						return new string[]{
 							"## 外部依存 / 使用ライセンス等",
-							"* " + a_argument.param.author_url + "/" + "JsonItem",
-							"* " + a_argument.param.author_url + "/" + "AssetLib",
+							//"* " + a_argument.param.author_url + "/" + "AssetLib",
 							//"### サンプルのみ",
 							//"* " + a_argument.param.author_url + "/" + "AssetLib",
 						};
