@@ -92,8 +92,9 @@ namespace Editor
 						return new string[]{
 							"## 外部依存 / 使用ライセンス等",
 							//"* " + a_argument.param.author_url + "/" + "AssetLib",
-							//"### サンプルのみ",
-							//"* " + a_argument.param.author_url + "/" + "AssetLib",
+							"### サンプルのみ",
+							"* " + a_argument.param.author_url + "/" + "AssetLib",
+							"* " + a_argument.param.author_url + "/" + "Code",
 						};
 					},
 

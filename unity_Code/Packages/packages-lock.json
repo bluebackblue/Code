@@ -12,14 +12,14 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "efa08f38df4624cdc97a88c70d127a185045f472"
+      "hash": "d6fe24fee3dd49b88b5a24033d47cd616599e6a8"
     },
     "blueback.upmversionmanager": {
       "version": "https://github.com/bluebackblue/UpmVersionManager.git?path=unity_UpmVersionManager/Assets/UPM",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "88e35f2f35ec0b7e4a35de5caeb8ee88b042cd42"
+      "hash": "4f91dad5bf496a9681d35ec3bf75bd2dafef1dec"
     },
     "com.unity.collab-proxy": {
       "version": "1.5.7",
@@ -47,7 +47,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.8",
+      "version": "2.0.9",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -70,7 +70,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.24",
+      "version": "1.1.27",
       "depth": 0,
       "source": "registry",
       "dependencies": {
