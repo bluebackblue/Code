@@ -15,7 +15,7 @@ Unity 2021.1.11f1
 
 ## UPM
 ### 最新
-* https://github.com/bluebackblue/Code.git?path=unity_Code/Assets/UPM#0.0.5
+* https://github.com/bluebackblue/Code.git?path=unity_Code/Assets/UPM#0.0.6
 ### 開発
 * https://github.com/bluebackblue/Code.git?path=unity_Code/Assets/UPM
 
@@ -29,6 +29,4 @@ Unity 2021.1.11f1
 Gitクライアントがインストールされている必要がある。
 * https://docs.unity3d.com/ja/current/Manual/upm-git.html
 * https://git-scm.com/
-
-## 例
 

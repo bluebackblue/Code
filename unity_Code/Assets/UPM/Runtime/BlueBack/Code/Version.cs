@@ -3,7 +3,7 @@
 /**
  * Copyright (c) blueback
  * Released under the MIT License
- * @brief バージョン。
+ * @brief バージョン。自動生成。
 */
 
 
@@ -15,9 +15,13 @@ namespace BlueBack.Code
 	*/
 	public class Version
 	{
-		/** version
+		/** packagename
 		*/
-		public const string packageversion = "0.0.5";
+		public const string packagename = "Code";
+
+		/** packageversion
+		*/
+		public const string packageversion = "0.0.6";
 
 		/** GetPackageVersion
 		*/
