@@ -15,7 +15,7 @@ namespace BlueBack.Code.Editor
 	/** UpdatePackage
 	*/
 	#if(!DEF_USER_BLUEBACK_CODE)
-	public class UpdatePackage
+	public static class UpdatePackage
 	{
 		/** MenuItem_BlueBack_Code_UpdatePackage
 		*/

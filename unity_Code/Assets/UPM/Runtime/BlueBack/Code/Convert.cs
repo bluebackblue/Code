@@ -13,7 +13,7 @@ namespace BlueBack.Code
 {
 	/** Convert
 	*/
-	public class Convert
+	public static class Convert
 	{
 		/** 置き換え。
 		*/
