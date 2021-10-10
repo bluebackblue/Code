@@ -1,0 +1,16 @@
+{
+   "keyword":[
+      "code",
+   ],
+   "overview":[
+      "コード自動生成",
+   ],
+   "root_readmemd_path":"../../README.md",
+   "discription":"コード自動生成",
+   "git_path":"BlueBackCode/Assets/UPM",
+   "git_author":"bluebackblue",
+   "git_url":"https://github.com/",
+   "author_name":"BlueBack",
+   "need_unity_version":"2020.1",
+   "package_name":"Code"
+}
