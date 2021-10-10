@@ -39,6 +39,9 @@ namespace Editor
 				//git_path
 				t_param.git_path = "BlueBackCode/Assets/UPM";
 
+				//git_repos
+				t_param.git_repos = "UpmCode";
+
 				//package_name
 				t_param.package_name = "Code";
 
@@ -74,7 +77,7 @@ namespace Editor
 					reference_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem[]{
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.Code",
-							url = "https://github.com/bluebackblue/Code",
+							url = "https://github.com/bluebackblue/UpmCode",
 						},
 					},
 					versiondefine_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefVersionDefineItem[]{
@@ -86,19 +89,19 @@ namespace Editor
 					reference_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem[]{
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.Code",
-							url = "https://github.com/bluebackblue/Code",
+							url = "https://github.com/bluebackblue/UpmCode",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.Code.Editor",
-							url = "https://github.com/bluebackblue/Code",
+							url = "https://github.com/bluebackblue/UpmCode",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.AssetLib",
-							url = "https://github.com/bluebackblue/AssetLib",
+							url = "https://github.com/bluebackblue/UpmAssetLib",
 						},
 						new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefReferenceItem(){
 							package_name = "BlueBack.AssetLib.Editor",
-							url = "https://github.com/bluebackblue/AssetLib",
+							url = "https://github.com/bluebackblue/UpmAssetLib",
 						},
 					},
 					versiondefine_list = new BlueBack.UpmVersionManager.Editor.Object_Setting.Param.AsmdefVersionDefineItem[]{
@@ -132,7 +135,7 @@ namespace Editor
 						return new string[]{
 							"## ライセンス",
 							"MIT License",
-							"* " + t_param.git_url + t_param.git_author + "/" + t_param.package_name + "/blob/main/LICENSE",
+							"* " + t_param.git_url + t_param.git_author + "/" + t_param.git_repos + "/blob/main/LICENSE",
 						};
 					},
 
@@ -157,9 +160,9 @@ namespace Editor
 						return new string[]{
 							"## UPM",
 							"### 最新",
-							"* " + t_param.git_url + t_param.git_author + "/" + t_param.package_name + ".git?path=" + t_param.git_path + "#" + a_argument.version,
+							"* " + t_param.git_url + t_param.git_author + "/" + t_param.git_repos + ".git?path=" + t_param.git_path + "#" + a_argument.version,
 							"### 開発",
-							"* " + t_param.git_url + t_param.git_author + "/" + t_param.package_name + ".git?path=" + t_param.git_path,
+							"* " + t_param.git_url + t_param.git_author + "/" + t_param.git_repos + ".git?path=" + t_param.git_path,
 						};
 					},
 

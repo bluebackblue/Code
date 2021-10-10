@@ -3,24 +3,24 @@
 
 ## ライセンス
 MIT License
-* https://github.com/bluebackblue/Code/blob/main/LICENSE
+* https://github.com/bluebackblue/UpmCode/blob/main/LICENSE
 
 ## 依存 / 使用ライセンス等
 ### ランタイム
 ### エディター
-* https://github.com/bluebackblue/Code
+* https://github.com/bluebackblue/UpmCode
 ### サンプル
-* https://github.com/bluebackblue/Code
-* https://github.com/bluebackblue/AssetLib
+* https://github.com/bluebackblue/UpmCode
+* https://github.com/bluebackblue/UpmAssetLib
 
 ## 動作確認
 Unity 2021.1.11f1
 
 ## UPM
 ### 最新
-* https://github.com/bluebackblue/Code.git?path=unity_Code/Assets/UPM#0.0.9
+* https://github.com/bluebackblue/UpmCode.git?path=BlueBackCode/Assets/UPM#0.0.10
 ### 開発
-* https://github.com/bluebackblue/Code.git?path=unity_Code/Assets/UPM
+* https://github.com/bluebackblue/UpmCode.git?path=BlueBackCode/Assets/UPM
 
 ## Unityへの追加方法
 * Unity起動
