@@ -1,9 +1,9 @@
 
 
 /**
-	* Copyright (c) blueback
-	* Released under the MIT License
-	* @brief パッケージ更新。自動生成。
+	Copyright (c) blueback
+	Released under the MIT License
+	@brief パッケージ更新。自動生成。
 */
 
 
@@ -90,7 +90,7 @@ namespace BlueBack.Code.Editor
 			byte[] t_file_binary = BlueBack.AssetLib.Editor.LoadBinary.LoadBinaryFromAssetsPath(a_filename);
 			System.Security.Cryptography.MD5CryptoServiceProvider t_service = new System.Security.Cryptography.MD5CryptoServiceProvider();
 			byte[] t_hash_binary = t_service.ComputeHash(t_file_binary);
-			
+
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 			foreach(byte t_byte in t_hash_binary) {
 				t_stringbuilder.Append(t_byte.ToString("X2"));
@@ -108,6 +108,8 @@ namespace BlueBack.Code.Editor
 				System.Collections.Generic.List<string> t_filename_list = BlueBack.AssetLib.Editor.FindFile.FindFileListFromAssetsPath("",".*","^(.*)(\\.cs)$");
 				foreach(string t_filename in t_filename_list){
 					string t_hash_new = Inner_CalcHash(t_filename);
+
+					//t_hash_new = "";
 
 					bool t_file_change = false;
 					{
@@ -143,7 +145,7 @@ namespace BlueBack.Code.Editor
 		private static string Convert_File(string a_file_name,string a_text)
 		{
 			//line_list
-			string[] t_line_list = a_text.Split(new char[]{'\n'});
+			string[] t_line_list = a_text.Replace("\r","").Split(new char[]{'\n'});
 			int t_line_list_max = t_line_list.Length;
 
 			//有効行数。
@@ -187,12 +189,4 @@ namespace BlueBack.Code.Editor
 	#endif
 }
 #endif
-
-
-
-
-
-
-
-
 

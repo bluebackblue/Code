@@ -68,14 +68,10 @@ namespace Samples.Code.Exsample.Editor
 
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
 			BlueBack.Code.Convert.Replace(t_stringbuilder,t_replace_list,t_template);
-			
+
 			UnityEngine.Debug.Log(t_stringbuilder.ToString());
 		}
 	}
 	#endif
 }
-
-
-
-
 
