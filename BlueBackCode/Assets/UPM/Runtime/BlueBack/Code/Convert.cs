@@ -1,9 +1,9 @@
 
 
 /**
- * Copyright (c) blueback
- * Released under the MIT License
- * @brief コンバート。
+	* Copyright (c) blueback
+	* Released under the MIT License
+	* @brief コンバート。
 */
 
 
@@ -113,4 +113,8 @@ namespace BlueBack.Code
 		}
 	}
 }
+
+
+
+
 

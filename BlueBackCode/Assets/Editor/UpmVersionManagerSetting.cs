@@ -1,9 +1,9 @@
 
 
 /**
- * Copyright (c) blueback
- * Released under the MIT License
- * @brief 設定。
+	* Copyright (c) blueback
+	* Released under the MIT License
+	* @brief 設定。
 */
 
 
@@ -105,4 +105,8 @@ namespace Editor
 	}
 }
 #endif
+
+
+
+
 

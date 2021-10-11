@@ -31,6 +31,14 @@
         "define_list":[
         ],
         "reference_list":[
+            {
+                "package_fullname":"BlueBack.AssetLib",
+                "url":"https://github.com/bluebackblue/UpmAssetLib",
+            },
+            {
+                "package_fullname":"BlueBack.AssetLib.Editor",
+                "url":"https://github.com/bluebackblue/UpmAssetLib",
+            },
         ]
     },
     "asmdef_sample":{
