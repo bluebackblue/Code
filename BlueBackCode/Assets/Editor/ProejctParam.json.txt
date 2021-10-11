@@ -6,7 +6,7 @@
     "git_path":"BlueBackCode/Assets/UPM",
     "discription_simple":"コード自動生成",
     "discription_detal":[
-        "コード自動生成",
+        "コード自動生成"
     ],
     "keyword":[
         "code",
@@ -17,7 +17,7 @@
         "## [0.0.0] - 2021-06-22",
         "### Changes",
         "- Init",
-        "",
+        ""
     ],
     "root_readmemd_path":"../../README.md",
     "need_unity_version":"2020.1",
@@ -32,17 +32,20 @@
         ],
         "reference_list":[
             {
-                "package_fullname":"BlueBack.Code",
-                "url":"https://github.com/bluebackblue/UpmCode",
+               "use":"use",
+               "package_fullname":"BlueBack.Code",
+                "url":"https://github.com/bluebackblue/UpmCode"
             },
             {
-                "package_fullname":"BlueBack.AssetLib",
-                "url":"https://github.com/bluebackblue/UpmAssetLib",
+               "use":"use",
+               "package_fullname":"BlueBack.AssetLib.Editor",
+                "url":"https://github.com/bluebackblue/UpmAssetLib"
             },
             {
-                "package_fullname":"BlueBack.AssetLib.Editor",
-                "url":"https://github.com/bluebackblue/UpmAssetLib",
-            },
+               "use":"use",
+               "package_fullname":"BlueBack.AssetLib",
+                "url":"https://github.com/bluebackblue/UpmAssetLib"
+            }
         ]
     },
     "asmdef_sample":{
@@ -50,13 +53,10 @@
         ],
         "reference_list":[
             {
+                "use":"use",
                 "package_fullname":"BlueBack.Code",
-                "url":"https://github.com/bluebackblue/UpmCode",
-            },
-            {
-                "package_fullname":"BlueBack.Code.Editor",
-                "url":"https://github.com/bluebackblue/UpmCode",
-            },
+                "url":"https://github.com/bluebackblue/UpmCode"
+            }
         ]
-    },
+    }
 }
