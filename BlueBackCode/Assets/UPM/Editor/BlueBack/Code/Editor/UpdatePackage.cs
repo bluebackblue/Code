@@ -19,18 +19,18 @@ namespace BlueBack.Code.Editor
 	{
 		/** MenuItem_BlueBack_Code_UpdatePackage
 		*/
-		[UnityEditor.MenuItem("BlueBack/Code/UpdatePackage")]
+		[UnityEditor.MenuItem("BlueBack/Code/UpdatePackage " + Version.packageversion)]
 		public static void MenuItem_BlueBack_Code_UpdatePackage()
 		{
-			string t_version = GetLastReleaseNameFromGitHub("bluebackblue",Version.packagename);
+			string t_version = GetLastReleaseNameFromGitHub();
 			if(t_version == null){
 				#if(UNITY_EDITOR)
 				DebugTool.EditorLogError("GetLastReleaseNameFromGitHub : connect error");
 				#endif
 			}else if(t_version.Length <= 0){
-				UnityEditor.PackageManager.Client.Add("https://github.com/bluebackblue/Code.git?path=BlueBackCode/Assets/UPM");
+				UnityEditor.PackageManager.Client.Add(Object_Setting.s_projectparam.git_url + ".git?path=" + Object_Setting.s_projectparam.git_path);
 			}else{
-				UnityEditor.PackageManager.Client.Add("https://github.com/bluebackblue/Code.git?path=BlueBackCode/Assets/UPM#" + t_version);
+				UnityEditor.PackageManager.Client.Add(Object_Setting.s_projectparam.git_url + ".git?path=" + Object_Setting.s_projectparam.git_path + "#" + t_version);
 			}
 		}
 
@@ -69,10 +69,12 @@ namespace BlueBack.Code.Editor
 
 		/** GetLastReleaseNameFromGitHub
 		*/
-		private static string GetLastReleaseNameFromGitHub(string a_auther,string a_reposname)
+		private static string GetLastReleaseNameFromGitHub()
 		{
+			string t_url = Object_Setting.s_projectparam.git_api + "/releases/latest";
+
 			try{
-				byte[] t_binary = DownloadBinary("https://api.github.com/repos/" + a_auther + "/" + a_reposname + "/releases/latest");
+				byte[] t_binary = DownloadBinary(t_url);
 				if(t_binary != null){
 					string t_text = System.Text.Encoding.UTF8.GetString(t_binary,0,t_binary.Length);
 					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(t_text,".*(?<name>\\\"tag_name\\\")\\s*\\:\\s*\\\"(?<value>[a-zA-Z0-9_\\.]*)\\\".*");
@@ -81,19 +83,19 @@ namespace BlueBack.Code.Editor
 						return t_text;
 					}else{
 						#if(UNITY_EDITOR)
-						DebugTool.EditorLogError(a_auther + " : " + a_reposname + " : text == null");
+						DebugTool.EditorLogError(t_url + " : text == null");
 						#endif
 						return null;
 					}
 				}else{
 					#if(UNITY_EDITOR)
-					DebugTool.EditorLogError(a_auther + " : " + a_reposname + " : binary == null");
+					DebugTool.EditorLogError(t_url + " : binary == null");
 					#endif
 					return null;
 				}
 			}catch(System.Exception t_exception){
 				#if(UNITY_EDITOR)
-				DebugTool.EditorLogError(a_auther + " : " + a_reposname + " : " + t_exception.Message + "\n" + t_exception.StackTrace);
+				DebugTool.EditorLogError(t_url + " : " + t_exception.Message + "\n" + t_exception.StackTrace);
 				#endif
 				return null;
 			}

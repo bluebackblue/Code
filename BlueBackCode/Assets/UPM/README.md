@@ -8,17 +8,15 @@ MIT License
 ## 依存 / 使用ライセンス等
 ### ランタイム
 ### エディター
-* https://github.com/bluebackblue/UpmCode
 ### サンプル
 * https://github.com/bluebackblue/UpmCode
-* https://github.com/bluebackblue/UpmAssetLib
 
 ## 動作確認
 Unity 2021.1.11f1
 
 ## UPM
 ### 最新
-* https://github.com/bluebackblue/UpmCode.git?path=BlueBackCode/Assets/UPM#0.0.10
+* https://github.com/bluebackblue/UpmCode.git?path=BlueBackCode/Assets/UPM#0.0.11
 ### 開発
 * https://github.com/bluebackblue/UpmCode.git?path=BlueBackCode/Assets/UPM
 
