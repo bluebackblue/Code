@@ -9,7 +9,7 @@
         "コード自動生成"
     ],
     "keyword":[
-        "code",
+        "code"
     ],
     "changelog":[
         "# Changelog",
