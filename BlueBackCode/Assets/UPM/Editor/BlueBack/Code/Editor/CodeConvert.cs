@@ -14,12 +14,11 @@ namespace BlueBack.Code.Editor
 {
 	/** CodeConvert
 	*/
-	#if(DEF_USER_BLUEBACK_CODE)
 	public static class CodeConvert
 	{
 		/** SingletonParam
 		*/
-		public class SingletonParam : UnityEditor.ScriptableSingleton<SingletonParam>
+		public sealed class SingletonParam : UnityEditor.ScriptableSingleton<SingletonParam>
 		{
 			/** Item
 			*/
@@ -87,7 +86,7 @@ namespace BlueBack.Code.Editor
 		*/
 		private static string Inner_CalcHash(string a_filename)
 		{
-			byte[] t_file_binary = BlueBack.AssetLib.Editor.LoadBinary.LoadBinaryFromAssetsPath(a_filename);
+			byte[] t_file_binary = BlueBack.AssetLib.Editor.LoadBinaryWithAssetsPath.Load(a_filename);
 			System.Security.Cryptography.MD5CryptoServiceProvider t_service = new System.Security.Cryptography.MD5CryptoServiceProvider();
 			byte[] t_hash_binary = t_service.ComputeHash(t_file_binary);
 
@@ -105,12 +104,9 @@ namespace BlueBack.Code.Editor
 		{
 			SingletonParam t_singletonparam = Inner_LoadSingletonParam();
 			{
-				System.Collections.Generic.List<string> t_filename_list = BlueBack.AssetLib.Editor.FindFile.FindFileListFromAssetsPath("",".*","^(.*)(\\.cs)$");
+				System.Collections.Generic.List<string> t_filename_list = BlueBack.AssetLib.Editor.FindFileWithAssetsPath.FindAll("",".*","^(.*)(\\.cs)$");
 				foreach(string t_filename in t_filename_list){
 					string t_hash_new = Inner_CalcHash(t_filename);
-
-					//t_hash_new = "";
-
 					bool t_file_change = false;
 					{
 						if(t_singletonparam.hashlist.TryGetValue(t_filename,out string t_hash_old) == true){
@@ -126,10 +122,10 @@ namespace BlueBack.Code.Editor
 					}
 
 					if(t_file_change == true){
-						string t_file_text = BlueBack.AssetLib.Editor.LoadText.LoadTextFromAssetsPath(t_filename,System.Text.Encoding.UTF8);
+						string t_file_text = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.LoadNoBomUtf8(t_filename);
 						string t_file_text_new = Convert_File(t_filename,t_file_text);
 						if(t_file_text != t_file_text_new){
-							BlueBack.AssetLib.Editor.SaveText.SaveUtf8TextToAssetsPath(t_file_text_new,t_filename,false,BlueBack.AssetLib.LineFeedOption.CRLF);
+							BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_file_text_new,t_filename,BlueBack.AssetLib.LineFeedOption.CRLF);
 							t_hash_new = Inner_CalcHash(t_filename);
 						}
 
@@ -186,7 +182,6 @@ namespace BlueBack.Code.Editor
 			return t_stringbuilder.ToString();
 		}
 	}
-	#endif
 }
 #endif
 
