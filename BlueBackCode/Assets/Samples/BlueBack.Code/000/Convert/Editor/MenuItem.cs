@@ -1,8 +1,8 @@
 
 
-/** Samples.Code.Exsample.Editor
+/** Samples.Code.Convert
 */
-namespace Samples.Code.Exsample.Editor
+namespace Samples.Code.Convert
 {
 	/** MenuItem
 	*/
@@ -11,7 +11,7 @@ namespace Samples.Code.Exsample.Editor
 	{
 		/** テスト。
 		*/
-		[UnityEditor.MenuItem("サンプル/Code/Exsample/Test")]
+		[UnityEditor.MenuItem("サンプル/BlueBack.Code/Convert/Replace")]
 		private static void MenuItem_Test()
 		{
 			string[] t_data = new string[]

@@ -14,11 +14,11 @@ MIT License
 * https://github.com/bluebackblue/UpmCode
 
 ## 動作確認
-Unity 2021.1.11f1
+Unity 2021.2.0b9
 
 ## UPM
 ### 最新
-* https://github.com/bluebackblue/UpmCode.git?path=BlueBackCode/Assets/UPM#0.0.15
+* https://github.com/bluebackblue/UpmCode.git?path=BlueBackCode/Assets/UPM#0.0.16
 ### 開発
 * https://github.com/bluebackblue/UpmCode.git?path=BlueBackCode/Assets/UPM
 
