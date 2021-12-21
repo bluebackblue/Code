@@ -1,9 +1,9 @@
 
 
 /**
-	Copyright (c) blueback
-	Released under the MIT License
-	@brief パッケージ更新。自動生成。
+ * Copyright (c) blueback
+ * Released under the MIT License
+ * @brief コードコンバート。
 */
 
 
@@ -122,7 +122,7 @@ namespace BlueBack.Code.Editor
 					}
 
 					if(t_file_change == true){
-						string t_file_text = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.LoadNoBomUtf8(t_filename);
+						string t_file_text = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.Load(t_filename);
 						string t_file_text_new = Convert_File(t_filename,t_file_text);
 						if(t_file_text != t_file_text_new){
 							BlueBack.AssetLib.Editor.SaveTextWithAssetsPath.SaveNoBomUtf8(t_file_text_new,t_filename,BlueBack.AssetLib.LineFeedOption.CRLF);
