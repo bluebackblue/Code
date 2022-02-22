@@ -1,8 +1,8 @@
 
 
-/** Samples.Code.Convert
+/** BlueBack.Code.Samples.Simple.Editor
 */
-namespace Samples.Code.Convert
+namespace BlueBack.Code.Samples.Simple.Editor
 {
 	/** MenuItem
 	*/
@@ -11,8 +11,8 @@ namespace Samples.Code.Convert
 	{
 		/** テスト。
 		*/
-		[UnityEditor.MenuItem("サンプル/BlueBack.Code/Convert/Replace")]
-		private static void MenuItem_Test()
+		[UnityEditor.MenuItem("Samples/BlueBack.Code/Simple/Replace")]
+		private static void MenuItem_Replace()
 		{
 			string[] t_data = new string[]
 			{

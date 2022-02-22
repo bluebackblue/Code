@@ -32,17 +32,17 @@
         ],
         "reference_list":[
             {
-               "use":"use",
+               "mode":"package",
                "package_fullname":"BlueBack.Code",
                 "url":"https://github.com/bluebackblue/UpmCode"
             },
             {
-               "use":"use",
+               "mode":"package",
                "package_fullname":"BlueBack.AssetLib.Editor",
                 "url":"https://github.com/bluebackblue/UpmAssetLib"
             },
             {
-               "use":"use",
+               "mode":"package",
                "package_fullname":"BlueBack.AssetLib",
                 "url":"https://github.com/bluebackblue/UpmAssetLib"
             }
@@ -53,7 +53,7 @@
         ],
         "reference_list":[
             {
-                "use":"use",
+                "mode":"package",
                 "package_fullname":"BlueBack.Code",
                 "url":"https://github.com/bluebackblue/UpmCode"
             }
