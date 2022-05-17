@@ -2,6 +2,7 @@
 
 /** BlueBack.Code.Samples.Simple.Editor
 */
+#if(!DEF_BLUEBACK_CODE_SAMPLES_DISABLE)
 namespace BlueBack.Code.Samples.Simple.Editor
 {
 	/** MenuItem
@@ -74,4 +75,5 @@ namespace BlueBack.Code.Samples.Simple.Editor
 	}
 	#endif
 }
+#endif
 

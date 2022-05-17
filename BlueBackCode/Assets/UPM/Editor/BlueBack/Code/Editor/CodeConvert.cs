@@ -7,6 +7,13 @@
 */
 
 
+/** define
+*/
+#if((ASMDEF_BLUEBACK_ASSETLIB||USERDEF_BLUEBACK_ASSETLIB))
+#define ASMDEF_TRUE
+#endif
+
+
 /** BlueBack.Code.Editor
 */
 #if(UNITY_EDITOR)
@@ -84,6 +91,7 @@ namespace BlueBack.Code.Editor
 
 		/** Inner_CalcHash
 		*/
+		#if(ASMDEF_TRUE)
 		private static string Inner_CalcHash(string a_filename)
 		{
 			byte[] t_file_binary = BlueBack.AssetLib.Editor.LoadBinaryWithAssetsPath.Load(a_filename);
@@ -96,11 +104,13 @@ namespace BlueBack.Code.Editor
 			}
 			return t_stringbuilder.ToString();
 		}
+		#endif
 
 		/** MenuItem_BlueBack_Code_UpdatePackage
 		*/
-		[UnityEditor.MenuItem("BlueBack/Code/CodeConvert")]
+		[UnityEditor.MenuItem("BlueBack/Code/CodeConvert/NoBomUtf8Crlf")]
 		public static void MenuItem_BlueBack_Code_UpdatePackage()
+		#if(ASMDEF_TRUE)
 		{
 			SingletonParam t_singletonparam = Inner_LoadSingletonParam();
 			{
@@ -135,6 +145,11 @@ namespace BlueBack.Code.Editor
 			}
 			Inner_SaveSingletonParam();
 		}
+		#else
+		{
+			#warning "ASMDEF_TRUE"
+		}
+		#endif
 
 		/** Convert_File
 		*/
