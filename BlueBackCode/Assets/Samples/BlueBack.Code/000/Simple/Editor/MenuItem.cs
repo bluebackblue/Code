@@ -35,7 +35,7 @@ namespace BlueBack.Code.Samples.Simple.Editor
 					"	{",
 				});
 
-				BlueBack.Code.Convert.Duplicate(t_template,"<<INDEX>>",t_data.Length,new string[]{
+				BlueBack.Code.Convert.Duplicate(t_template,"<<INDEX>>",t_data.Length,0,new string[]{
 					"		public int <<VALUE.<<INDEX>>>>;",
 				});
 
@@ -47,7 +47,7 @@ namespace BlueBack.Code.Samples.Simple.Editor
 					"		{",
 				});
 
-				BlueBack.Code.Convert.Duplicate(t_template,"<<INDEX>>",t_data.Length,new string[]{
+				BlueBack.Code.Convert.Duplicate(t_template,"<<INDEX>>",t_data.Length,0,new string[]{
 					"			<<VALUE.<<INDEX>>>> = 0;",
 				});
 
@@ -68,7 +68,7 @@ namespace BlueBack.Code.Samples.Simple.Editor
 			}
 
 			System.Text.StringBuilder t_stringbuilder = new System.Text.StringBuilder();
-			BlueBack.Code.Convert.Replace(t_stringbuilder,t_replace_list,t_template);
+			BlueBack.Code.Convert.Add(t_stringbuilder,t_replace_list,t_template);
 
 			UnityEngine.Debug.Log(t_stringbuilder.ToString());
 		}
