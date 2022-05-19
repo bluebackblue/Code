@@ -51,36 +51,36 @@ namespace BlueBack.Code.Editor
 			public System.Collections.Generic.Dictionary<string,string> hashlist;
 		}
 
-		/** s_singletonparam
+		/** singletonparam
 		*/
-		private static SingletonParam s_singletonparam = null;
+		private static SingletonParam singletonparam = null;
 
 		/** Inner_LoadSingletonParam
 		*/
 		private static SingletonParam Inner_LoadSingletonParam()
 		{
-			if(s_singletonparam == null){
-				s_singletonparam = SingletonParam.instance;
-				if(s_singletonparam.hashlist_serialize == null){
-					s_singletonparam.hashlist_serialize = new System.Collections.Generic.List<SingletonParam.Item>();
+			if(CodeConvert.singletonparam == null){
+				CodeConvert.singletonparam = SingletonParam.instance;
+				if(CodeConvert.singletonparam.hashlist_serialize == null){
+					CodeConvert.singletonparam.hashlist_serialize = new System.Collections.Generic.List<SingletonParam.Item>();
 				}
-				s_singletonparam.hashlist = new System.Collections.Generic.Dictionary<string,string>();
-				foreach(SingletonParam.Item t_item in s_singletonparam.hashlist_serialize){
-					s_singletonparam.hashlist.Add(t_item.key,t_item.value);
+				CodeConvert.singletonparam.hashlist = new System.Collections.Generic.Dictionary<string,string>();
+				foreach(SingletonParam.Item t_item in CodeConvert.singletonparam.hashlist_serialize){
+					CodeConvert.singletonparam.hashlist.Add(t_item.key,t_item.value);
 				}
 			}
-			return s_singletonparam;
+			return CodeConvert.singletonparam;
 		}
 
 		/** Inner_SaveSingletonParam
 		*/
 		private static void Inner_SaveSingletonParam()
 		{
-			if(s_singletonparam != null){
-				if(s_singletonparam.hashlist != null){
-					s_singletonparam.hashlist_serialize = new System.Collections.Generic.List<SingletonParam.Item>();
-					foreach(System.Collections.Generic.KeyValuePair<string,string> t_pair in s_singletonparam.hashlist){
-						s_singletonparam.hashlist_serialize.Add(new SingletonParam.Item(){
+			if(CodeConvert.singletonparam != null){
+				if(CodeConvert.singletonparam.hashlist != null){
+					CodeConvert.singletonparam.hashlist_serialize = new System.Collections.Generic.List<SingletonParam.Item>();
+					foreach(System.Collections.Generic.KeyValuePair<string,string> t_pair in CodeConvert.singletonparam.hashlist){
+						CodeConvert.singletonparam.hashlist_serialize.Add(new SingletonParam.Item(){
 							key = t_pair.Key,
 							value = t_pair.Value,
 						});
