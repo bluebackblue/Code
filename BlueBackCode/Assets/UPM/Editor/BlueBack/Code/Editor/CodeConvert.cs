@@ -189,7 +189,7 @@ namespace BlueBack.Code.Editor
 
 						//ネストのスペースをタブに変換。
 						t_nest = t_nest.Replace("   ","\t").Replace(" ","\t");
-						
+
 						//本文なしの場合ネストを削除。
 						if(t_main.Length == 0){
 							t_line_list[ii] = "";
