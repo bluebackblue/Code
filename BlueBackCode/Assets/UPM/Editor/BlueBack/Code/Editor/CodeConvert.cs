@@ -72,6 +72,14 @@ namespace BlueBack.Code.Editor
 			return CodeConvert.singletonparam;
 		}
 
+		/** MenuItem_BlueBack_Code_UpdatePackage
+		*/
+		[UnityEditor.MenuItem("BlueBack/Code/CodeConvert/NoBomUtf8Crlf")]
+		private static void MenuItem_BlueBack_Code_UpdatePackage()
+		{
+			Convert();
+		}
+
 		/** Inner_SaveSingletonParam
 		*/
 		private static void Inner_SaveSingletonParam()
@@ -106,10 +114,9 @@ namespace BlueBack.Code.Editor
 		}
 		#endif
 
-		/** MenuItem_BlueBack_Code_UpdatePackage
+		/** Convert
 		*/
-		[UnityEditor.MenuItem("BlueBack/Code/CodeConvert/NoBomUtf8Crlf")]
-		public static void MenuItem_BlueBack_Code_UpdatePackage()
+		public static void Convert()
 		#if(ASMDEF_TRUE)
 		{
 			SingletonParam t_singletonparam = Inner_LoadSingletonParam();
@@ -177,8 +184,13 @@ namespace BlueBack.Code.Editor
 					System.Text.RegularExpressions.Regex t_regex = new System.Text.RegularExpressions.Regex("^(?<nest>[\\t ]*)(?! \\t)(?<main>[\\d\\D]*)$",System.Text.RegularExpressions.RegexOptions.Multiline);
 					System.Text.RegularExpressions.Match t_match = t_regex.Match(t_line_list[ii]);
 					if(t_match.Success == true){
-						string t_nest = t_match.Groups["nest"].Value.Replace(" ","\t");
+						string t_nest = t_match.Groups["nest"].Value;
 						string t_main = t_match.Groups["main"].Value;
+
+						//ネストのスペースをタブに変換。
+						t_nest = t_nest.Replace("   ","\t").Replace(" ","\t");
+						
+						//本文なしの場合ネストを削除。
 						if(t_main.Length == 0){
 							t_line_list[ii] = "";
 						}else{
