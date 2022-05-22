@@ -24,7 +24,7 @@ namespace BlueBack.Code.Samples.Simple.Editor
 
 			System.Collections.Generic.List<string> t_template = new System.Collections.Generic.List<string>();
 			{
-				BlueBack.Code.Convert.Add(t_template,new string[]{
+				BlueBack.Code.Convert.Add(t_template,null,new string[]{
 					"/** <<NAMESPACE>>",
 					"*/",
 					"namespace <<NAMESPACE>>",
@@ -39,7 +39,7 @@ namespace BlueBack.Code.Samples.Simple.Editor
 					"		public int <<VALUE.<<INDEX>>>>;",
 				});
 
-				BlueBack.Code.Convert.Add(t_template,new string[]{
+				BlueBack.Code.Convert.Add(t_template,null,new string[]{
 					"",
 					"		/** constructor",
 					"		*/",
@@ -51,7 +51,7 @@ namespace BlueBack.Code.Samples.Simple.Editor
 					"			<<VALUE.<<INDEX>>>> = 0;",
 				});
 
-				BlueBack.Code.Convert.Add(t_template,new string[]{
+				BlueBack.Code.Convert.Add(t_template,null,new string[]{
 					"		}",
 					"	}",
 					"}",
