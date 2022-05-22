@@ -35,7 +35,7 @@ namespace BlueBack.Code.Samples.Simple.Editor
 					"	{",
 				});
 
-				BlueBack.Code.Convert.Duplicate(t_template,"<<INDEX>>",t_data.Length,0,new string[]{
+				BlueBack.Code.Convert.Duplicate(t_template,"<<INDEX>>",t_data.Length,0,null,new string[]{
 					"		public int <<VALUE.<<INDEX>>>>;",
 				});
 
@@ -47,7 +47,7 @@ namespace BlueBack.Code.Samples.Simple.Editor
 					"		{",
 				});
 
-				BlueBack.Code.Convert.Duplicate(t_template,"<<INDEX>>",t_data.Length,0,new string[]{
+				BlueBack.Code.Convert.Duplicate(t_template,"<<INDEX>>",t_data.Length,0,null,new string[]{
 					"			<<VALUE.<<INDEX>>>> = 0;",
 				});
 

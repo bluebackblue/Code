@@ -16,6 +16,12 @@ namespace BlueBack.Code
 	public static class Convert
 	{
 		/** 置き換え。
+
+			string --> replacelist --> string
+
+			a_replace_list	: 置換リスト。
+			a_template		: 元データ。
+
 		*/
 		public static string Replace(System.Collections.Generic.Dictionary<string,string> a_replace_list,string a_template)
 		{
@@ -39,6 +45,12 @@ namespace BlueBack.Code
 		}
 
 		/** 追加。
+
+			string[] --> Add --> List<string>
+
+			a_out_list		: 追加先。
+			a_template		: 元データ。
+
 		*/
 		public static void Add(System.Collections.Generic.List<string> a_out_list,string[] a_template)
 		{
@@ -49,6 +61,12 @@ namespace BlueBack.Code
 		}
 
 		/** 追加。
+
+			List<string> --> Add --> List<string>
+
+			a_out_list		: 追加先。
+			a_template		: 元データ。
+
 		*/
 		public static void Add(System.Collections.Generic.List<string> a_out_list,System.Collections.Generic.List<string> a_template)
 		{
@@ -62,15 +80,26 @@ namespace BlueBack.Code
 
 			「a_template」を「a_count」の数だけ複製、「a_index_key」をインデックスに置換。
 
+			a_out_list		: 追加先。
+			a_template		: 元データ。
+
+			a_index_key		: 例 : <<INDEX>>
+			a_index_count	: 総数。
+			a_index_offset	: 開始インデックス。
+
 		*/
-		public static void Duplicate(System.Collections.Generic.List<string> a_out_list,string a_index_key,int a_count,int a_index_offset,string[] a_template)
+		public static void Duplicate(System.Collections.Generic.List<string> a_out_list,string a_index_key,int a_index_count,int a_index_offset,System.Collections.Generic.Dictionary<string,string> a_replace_list,string[] a_template)
 		{
-			int ii_max = a_count + a_index_offset;
+			int ii_max = a_index_count + a_index_offset;
 			for(int ii=a_index_offset;ii<ii_max;ii++){
 				string ii_string = ii.ToString();
 				int jj_max = a_template.Length;
 				for(int jj=0;jj<jj_max;jj++){
-					a_out_list.Add(a_template[jj].Replace(a_index_key,ii_string));
+					string t_temp = a_template[jj].Replace(a_index_key,ii_string);
+					if(a_replace_list != null){
+						t_temp = Replace(a_replace_list,t_temp);
+					}
+					a_out_list.Add(t_temp);
 				}
 			}
 		}
@@ -79,37 +108,70 @@ namespace BlueBack.Code
 
 			「a_template」を「a_count」の数だけ複製、「a_index_key」をインデックスに置換。
 
+			a_out_list		: 追加先。
+			a_template		: 元データ。
+
+			a_index_key		: 例 : <<INDEX>>
+			a_index_count	: 総数。
+			a_index_offset	: 開始インデックス。
+
 		*/
-		public static void Duplicate(System.Collections.Generic.List<string> a_out_list,string a_index_key,int a_count,int a_index_offset,System.Collections.Generic.List<string> a_template)
+		public static void Duplicate(System.Collections.Generic.List<string> a_out_list,string a_index_key,int a_index_count,int a_index_offset,System.Collections.Generic.Dictionary<string,string> a_replace_list,System.Collections.Generic.List<string> a_template)
 		{
-			int ii_max = a_count + a_index_offset;
-			for(int ii=ii_max;ii<ii_max;ii++){
+			int ii_max = a_index_count + a_index_offset;
+			for(int ii=a_index_offset;ii<ii_max;ii++){
 				string ii_string = ii.ToString();
 				int jj_max = a_template.Count;
 				for(int jj=0;jj<jj_max;jj++){
-					a_out_list.Add(a_template[jj].Replace(a_index_key,ii_string));
+					string t_temp = a_template[jj].Replace(a_index_key,ii_string);
+					if(a_replace_list != null){
+						t_temp = Replace(a_replace_list,t_temp);
+					}
+					a_out_list.Add(t_temp);
 				}
 			}
 		}
 
 		/** 追加。
+
+			string[] --> Append --> StringBuilder
+
+			a_out_stringbuilder		: 追加先。
+			a_replace_list			: 置換リスト。
+			a_template				: 元データ。
+
 		*/
 		public static void Add(System.Text.StringBuilder a_out_stringbuilder,System.Collections.Generic.Dictionary<string,string> a_replace_list,string[] a_template)
 		{
 			int ii_max = a_template.Length;
 			for(int ii=0;ii<ii_max;ii++){
-				a_out_stringbuilder.Append(Convert.Replace(a_replace_list,a_template[ii]));
+				string t_temp = a_template[ii];
+				if(a_replace_list != null){
+					t_temp = Convert.Replace(a_replace_list,t_temp);
+				}
+				a_out_stringbuilder.Append(t_temp);
 				a_out_stringbuilder.Append("\n");
 			}
 		}
 
-		/** 追加。
+		/** 追加。StringBuilder。
+
+			List<string> --> Append --> StringBuilder
+
+			a_out_stringbuilder		: 追加先。
+			a_replace_list			: 置換リスト。
+			a_template				: 元データ。
+
 		*/
 		public static void Add(System.Text.StringBuilder a_out_stringbuilder,System.Collections.Generic.Dictionary<string,string> a_replace_list,System.Collections.Generic.List<string> a_template)
 		{
 			int ii_max = a_template.Count;
 			for(int ii=0;ii<ii_max;ii++){
-				a_out_stringbuilder.Append(Convert.Replace(a_replace_list,a_template[ii]));
+				string t_temp = a_template[ii];
+				if(a_replace_list != null){
+					t_temp = Convert.Replace(a_replace_list,t_temp);
+				}
+				a_out_stringbuilder.Append(t_temp);
 				a_out_stringbuilder.Append("\n");
 			}
 		}
