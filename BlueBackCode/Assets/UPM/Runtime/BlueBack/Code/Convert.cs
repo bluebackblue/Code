@@ -11,6 +11,10 @@
 */
 namespace BlueBack.Code
 {
+	/** IndexType
+	*/
+	using IndexType = System.Int32;
+
 	/** Convert
 	*/
 	public static class Convert
@@ -138,12 +142,51 @@ namespace BlueBack.Code
 
 			「a_template」を「a_count」の数だけ複製、「a_index_key」をインデックスに置換。
 
-			a_out_list		: 追加先。
-			a_template		: 元データ。
+			a_out_list				: 追加先。
+			a_index_key				: 例 : <<INDEX>>
+			a_index_count			: 総数。
+			a_index_offset			: 開始インデックス。
+			a_replace_list			: 置換リスト。
+			a_template_callback		: 元データ。
 
+		*/
+		public static void Duplicate(System.Collections.Generic.List<string> a_out_list,string a_index_key,int a_index_count,int a_index_offset,System.Collections.Generic.Dictionary<string,string> a_replace_list,System.Func<IndexType,string[]> a_template_callback)
+		{
+			int ii_max = a_index_count + a_index_offset;
+			if(a_replace_list != null){
+				for(int ii=a_index_offset;ii<ii_max;ii++){
+					string ii_string = ii.ToString();
+					string[] t_template = a_template_callback(ii);
+					int jj_max = t_template.Length;
+					for(int jj=0;jj<jj_max;jj++){
+						string t_temp = t_template[jj].Replace(a_index_key,ii_string);
+						t_temp = Replace(a_replace_list,t_temp);
+						a_out_list.Add(t_temp);
+					}
+				}
+			}else{
+				for(int ii=a_index_offset;ii<ii_max;ii++){
+					string ii_string = ii.ToString();
+					string[] t_template = a_template_callback(ii);
+					int jj_max = t_template.Length;
+					for(int jj=0;jj<jj_max;jj++){
+						string t_temp = t_template[jj].Replace(a_index_key,ii_string);
+						a_out_list.Add(t_temp);
+					}
+				}
+			}
+		}
+
+		/** 複製。
+
+			「a_template」を「a_count」の数だけ複製、「a_index_key」をインデックスに置換。
+
+			a_out_list		: 追加先。
 			a_index_key		: 例 : <<INDEX>>
 			a_index_count	: 総数。
 			a_index_offset	: 開始インデックス。
+			a_replace_list	: 置換リスト。
+			a_template		: 元データ。
 
 		*/
 		public static void Duplicate(System.Collections.Generic.List<string> a_out_list,string a_index_key,int a_index_count,int a_index_offset,System.Collections.Generic.Dictionary<string,string> a_replace_list,System.Collections.Generic.List<string> a_template)
