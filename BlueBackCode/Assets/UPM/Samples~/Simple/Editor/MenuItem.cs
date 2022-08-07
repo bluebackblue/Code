@@ -8,7 +8,7 @@ namespace BlueBack.Code.Samples.Simple.Editor
 	/** MenuItem
 	*/
 	#if(UNITY_EDITOR)
-	public class MenuItem
+	public static class MenuItem
 	{
 		/** テスト。
 		*/
@@ -31,7 +31,7 @@ namespace BlueBack.Code.Samples.Simple.Editor
 					"{",
 					"	/** <<CLASS>>",
 					"	*/",
-					"	public class <<CLASS>>",
+					"	public sealed class <<CLASS>>",
 					"	{",
 				});
 
