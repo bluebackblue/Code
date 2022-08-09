@@ -74,10 +74,10 @@ namespace BlueBack.Code.Editor
 			return CodeConvert.singletonparam;
 		}
 
-		/** MenuItem_BlueBack_Code_UpdatePackage
+		/** MenuItem_BlueBack_Code_CodeConvert_NoBomUtf8Crlf
 		*/
 		[UnityEditor.MenuItem("BlueBack/Code/CodeConvert/NoBomUtf8Crlf")]
-		private static void MenuItem_BlueBack_Code_UpdatePackage()
+		private static void MenuItem_BlueBack_Code_CodeConvert_NoBomUtf8Crlf()
 		{
 			Convert();
 		}
