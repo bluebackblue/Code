@@ -27,12 +27,12 @@ namespace BlueBack.Code.Editor
 	{
 		/** Check
 		*/
-		public static void Check()
+		public static void Check(System.Collections.Generic.List<string> a_ignore_list)
 		{
 			System.Collections.Generic.List<string> t_list = BlueBack.AssetLib.Editor.FindFileWithAssetsPath.FindAll("","^.*$","^.*\\.cs$");
 			for(int ii=0;ii<t_list.Count;ii++){
 				string t_codetext = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.Load(t_list[ii]);
-				Inner_Check(t_list[ii],t_codetext);
+				Inner_Check(t_list[ii],t_codetext,a_ignore_list);
 			}
 		}
 
@@ -41,7 +41,7 @@ namespace BlueBack.Code.Editor
 		[UnityEditor.MenuItem("BlueBack/Code/Check/FileNameCheck")]
 		private static void MenuItem_BlueBack_Code_Check_FileNameCheck()
 		{
-			Check();
+			Check(null);
 		}
 
 		/** KeywordType
@@ -108,14 +108,14 @@ namespace BlueBack.Code.Editor
 
 		/** Check
 		*/
-		private static void Inner_Check(string a_path,string a_codetext)
+		private static void Inner_Check(string a_path,string a_codetext,System.Collections.Generic.List<string> a_ignore_list)
 		{
 			KeywordType t_findkeyword = Inner_FindKeyword(a_codetext);
 
 			switch(t_findkeyword){
 			case KeywordType.Struct:
 				{
-					string t_pattern = string.Format("{0}{1}{2}{3}","struct","(?<space>[\\r\\n \\t]*)",System.IO.Path.GetFileNameWithoutExtension(a_path),"(?<last>[\\r\\n \\t<:])");
+					string t_pattern = string.Format("{0}{1}{2}{3}","struct","(?<space>[\\r\\n \\t]*)",System.IO.Path.GetFileNameWithoutExtension(a_path),"(?<last>[\\r\\n \\t{<:])");
 
 					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(a_codetext,t_pattern,System.Text.RegularExpressions.RegexOptions.Multiline);
 					if(t_match.Success == true){
@@ -126,12 +126,12 @@ namespace BlueBack.Code.Editor
 
 						return;
 					}else{
-						UnityEngine.Debug.LogError(string.Format("{0} : {1}",a_path,a_codetext));
+						UnityEngine.Debug.LogError(string.Format("path = {0} : {1}",a_path,a_codetext));
 					}
 				}break;
 			case KeywordType.Enum:
 				{
-					string t_pattern = string.Format("{0}{1}{2}{3}","enum","(?<space>[\\r\\n \\t]*)",System.IO.Path.GetFileNameWithoutExtension(a_path),"(?<last>[\\r\\n \\t<:])");
+					string t_pattern = string.Format("{0}{1}{2}{3}","enum","(?<space>[\\r\\n \\t]*)",System.IO.Path.GetFileNameWithoutExtension(a_path),"(?<last>[\\r\\n \\t{<:])");
 
 					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(a_codetext,t_pattern,System.Text.RegularExpressions.RegexOptions.Multiline);
 					if(t_match.Success == true){
@@ -142,12 +142,12 @@ namespace BlueBack.Code.Editor
 
 						return;
 					}else{
-						UnityEngine.Debug.LogError(string.Format("{0} : {1}",a_path,a_codetext));
+						UnityEngine.Debug.LogError(string.Format("path = {0} : {1}",a_path,a_codetext));
 					}
 				}break;
 			case KeywordType.Interface:
 				{
-					string t_pattern = string.Format("{0}{1}{2}{3}","interface","(?<space>[\\r\\n \\t]*)",System.IO.Path.GetFileNameWithoutExtension(a_path),"(?<last>[\\r\\n \\t<:])");
+					string t_pattern = string.Format("{0}{1}{2}{3}","interface","(?<space>[\\r\\n \\t]*)",System.IO.Path.GetFileNameWithoutExtension(a_path),"(?<last>[\\r\\n \\t{<:])");
 
 					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(a_codetext,t_pattern,System.Text.RegularExpressions.RegexOptions.Multiline);
 					if(t_match.Success == true){
@@ -158,12 +158,12 @@ namespace BlueBack.Code.Editor
 
 						return;
 					}else{
-						UnityEngine.Debug.LogError(string.Format("{0} : {1}",a_path,a_codetext));
+						UnityEngine.Debug.LogError(string.Format("path = {0} : {1}",a_path,a_codetext));
 					}
 				}break;
 			case KeywordType.Class:
 				{
-					string t_pattern = string.Format("{0}{1}{2}{3}","class","(?<space>[\\r\\n \\t]*)",System.IO.Path.GetFileNameWithoutExtension(a_path),"(?<last>[\\r\\n \\t<:])");
+					string t_pattern = string.Format("{0}{1}{2}{3}","class","(?<space>[\\r\\n \\t]*)",System.IO.Path.GetFileNameWithoutExtension(a_path),"(?<last>[\\r\\n \\t{<:])");
 
 					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(a_codetext,t_pattern,System.Text.RegularExpressions.RegexOptions.Multiline);
 					if(t_match.Success == true){
@@ -174,12 +174,19 @@ namespace BlueBack.Code.Editor
 
 						return;
 					}else{
-						UnityEngine.Debug.LogError(string.Format("{0} : {1}",a_path,a_codetext));
+						UnityEngine.Debug.LogError(string.Format("path = {0} : {1}",a_path,a_codetext));
 					}
 				}break;
 			default:
 				{
-					UnityEngine.Debug.LogError(string.Format("error : {0}",t_findkeyword));
+					if(a_ignore_list != null){
+						if(a_ignore_list.FindIndex(0,a_ignore_list.Count,(string a_a_path)=>{return (a_a_path == a_path);}) >= 0){
+							UnityEngine.Debug.Log(string.Format("ignore : path = {0}",a_path));
+							return;
+						}
+					}
+
+					UnityEngine.Debug.LogError(string.Format("error : {0} : path = {1} : {2}",t_findkeyword,a_path,a_codetext));
 				}break;
 			}
 		}
