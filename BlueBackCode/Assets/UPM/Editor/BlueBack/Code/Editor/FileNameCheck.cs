@@ -25,16 +25,23 @@ namespace BlueBack.Code.Editor
 	*/
 	public static class FileNameCheck
 	{
-		/** MenuItem_BlueBack_Code_FileNameCheck
+		/** Check
 		*/
-		[UnityEditor.MenuItem("BlueBack/Code/Check/FileNameCheck")]
-		private static void MenuItem_BlueBack_Code_Check_FileNameCheck()
+		public static void Check()
 		{
 			System.Collections.Generic.List<string> t_list = BlueBack.AssetLib.Editor.FindFileWithAssetsPath.FindAll("","^.*$","^.*\\.cs$");
 			for(int ii=0;ii<t_list.Count;ii++){
 				string t_codetext = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.Load(t_list[ii]);
 				Inner_Check(t_list[ii],t_codetext);
 			}
+		}
+
+		/** MenuItem_BlueBack_Code_FileNameCheck
+		*/
+		[UnityEditor.MenuItem("BlueBack/Code/Check/FileNameCheck")]
+		private static void MenuItem_BlueBack_Code_Check_FileNameCheck()
+		{
+			Check();
 		}
 
 		/** KeywordType
