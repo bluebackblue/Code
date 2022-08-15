@@ -3,7 +3,7 @@
 /**
 	Copyright (c) blueback
 	Released under the MIT License
-	@brief コードコンバート。
+	@brief 定義名とファイル名の一致チェック。
 */
 
 
@@ -37,42 +37,41 @@ namespace BlueBack.Code.Editor
 			}
 		}
 
-		/** MenuItem_BlueBack_Code_Check_Test
-		*/
-		[UnityEditor.MenuItem("BlueBack/Code/Check/Test")]
-		private static void MenuItem_BlueBack_Code_Check_Test()
-		{
-			System.Collections.Generic.List<string> t_list = BlueBack.AssetLib.Editor.FindFileWithAssetsPath.FindAll("","^.*$","^.*\\.cs$");
-			for(int ii=0;ii<t_list.Count;ii++){
-				if(System.IO.Path.GetFileNameWithoutExtension(t_list[ii]) == "TestClass"){
-					string t_codetext = BlueBack.AssetLib.Editor.LoadTextWithAssetsPath.Load(t_list[ii]);
-					CommentCut.Replace(t_codetext);
-				}
-			}
-		}
-
 		/** KeywordType
 		*/
 		private enum KeywordType
 		{
+			/** None
+			*/
 			None,
+
+			/** Struct
+			*/
 			Struct,
+
+			/** Class
+			*/
 			Class,
+
+			/** Enum
+			*/
 			Enum,
+
+			/** Interface
+			*/
 			Interface,
 		};
 
 		/** Inner_FindKeyword
-
-			TODO:コメントのスキップ。正規化。
-
 		*/
 		private static KeywordType Inner_FindKeyword(string a_codetext)
 		{
-			int t_index_struct = a_codetext.IndexOf("struct");
-			int t_index_class = a_codetext.IndexOf("class");
-			int t_index_enum = a_codetext.IndexOf("enum");
-			int t_index_interface = a_codetext.IndexOf("interface");
+			string t_codetext = BlueBack.Code.CommentCut.Replace(a_codetext);
+
+			int t_index_struct = t_codetext.IndexOf("struct");
+			int t_index_class = t_codetext.IndexOf("class");
+			int t_index_enum = t_codetext.IndexOf("enum");
+			int t_index_interface = t_codetext.IndexOf("interface");
 
 			if((t_index_struct >= 0)&&((t_index_class < 0)||(t_index_struct < t_index_class))&&((t_index_enum < 0)||(t_index_struct < t_index_enum))&&((t_index_interface < 0)||(t_index_struct < t_index_interface))){
 				return KeywordType.Struct;
@@ -91,15 +90,14 @@ namespace BlueBack.Code.Editor
 			}
 
 			return KeywordType.None;
-		}
+		} 
 
-		/** ReplaceEscapeSequence
+		/** Inner_ReplaceEscapeSequence
 		*/
-		private static string ReplaceEscapeSequence(string a_value)
+		private static string Inner_ReplaceEscapeSequence(string a_value)
 		{
-			return a_value.Replace("\r","<r>").Replace("\n","<n>").Replace("\t","<tab>").Replace(" ","<space>");
+			return a_value.Replace("\r","<<r>>").Replace("\n","<<n>>").Replace("\t","<<tab>>").Replace(" ","<<space>>");
 		}
-
 
 		/** Check
 		*/
@@ -110,23 +108,12 @@ namespace BlueBack.Code.Editor
 			switch(t_findkeyword){
 			case KeywordType.Struct:
 				{
-					string t_pattern_keyword = "struct";
-					string t_pattern_space = "(?<space>[\\r\\n \\t]*)";
-					string t_pattern_name = System.IO.Path.GetFileNameWithoutExtension(a_path);
-					string t_pattern_last = "(?<last>[\\r\\n \\t<:]*)";
-
-					string t_pattern = "";
-					{
-						t_pattern += t_pattern_keyword;
-						t_pattern += t_pattern_space;
-						t_pattern += t_pattern_name;
-						t_pattern += t_pattern_last;
-					}
+					string t_pattern = string.Format("{0}{1}{2}{3}","struct","(?<space>[\\r\\n \\t]*)",System.IO.Path.GetFileNameWithoutExtension(a_path),"(?<last>[\\r\\n \\t<:])");
 
 					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(a_codetext,t_pattern,System.Text.RegularExpressions.RegexOptions.Multiline);
 					if(t_match.Success == true){
-						string t_value_space = ReplaceEscapeSequence(t_match.Groups["space"].Value);
-						string t_value_last = ReplaceEscapeSequence(t_match.Groups["last"].Value);
+						string t_value_space = Inner_ReplaceEscapeSequence(t_match.Groups["space"].Value);
+						string t_value_last = Inner_ReplaceEscapeSequence(t_match.Groups["last"].Value);
 
 						UnityEngine.Debug.Log(string.Format("path = {0} : keyword = {1} : space = [{2}][{3}]\n{4}",a_path,t_findkeyword,t_value_space,t_value_last,a_codetext));
 
@@ -137,23 +124,12 @@ namespace BlueBack.Code.Editor
 				}break;
 			case KeywordType.Enum:
 				{
-					string t_pattern_keyword = "enum";
-					string t_pattern_space = "(?<space>[\\r\\n \\t]*)";
-					string t_pattern_name = System.IO.Path.GetFileNameWithoutExtension(a_path);
-					string t_pattern_last = "(?<last>[\\r\\n \\t<:]*)";
-
-					string t_pattern = "";
-					{
-						t_pattern += t_pattern_keyword;
-						t_pattern += t_pattern_space;
-						t_pattern += t_pattern_name;
-						t_pattern += t_pattern_last;
-					}
+					string t_pattern = string.Format("{0}{1}{2}{3}","enum","(?<space>[\\r\\n \\t]*)",System.IO.Path.GetFileNameWithoutExtension(a_path),"(?<last>[\\r\\n \\t<:])");
 
 					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(a_codetext,t_pattern,System.Text.RegularExpressions.RegexOptions.Multiline);
 					if(t_match.Success == true){
-						string t_value_space = ReplaceEscapeSequence(t_match.Groups["space"].Value);
-						string t_value_last = ReplaceEscapeSequence(t_match.Groups["last"].Value);
+						string t_value_space = Inner_ReplaceEscapeSequence(t_match.Groups["space"].Value);
+						string t_value_last = Inner_ReplaceEscapeSequence(t_match.Groups["last"].Value);
 
 						UnityEngine.Debug.Log(string.Format("path = {0} : keyword = {1} : space = [{2}][{3}]\n{4}",a_path,t_findkeyword,t_value_space,t_value_last,a_codetext));
 
@@ -164,23 +140,12 @@ namespace BlueBack.Code.Editor
 				}break;
 			case KeywordType.Interface:
 				{
-					string t_pattern_keyword = "interface";
-					string t_pattern_space = "(?<space>[\\r\\n \\t]*)";
-					string t_pattern_name = System.IO.Path.GetFileNameWithoutExtension(a_path);
-					string t_pattern_last = "(?<last>[\\r\\n \\t<:]*)";
-
-					string t_pattern = "";
-					{
-						t_pattern += t_pattern_keyword;
-						t_pattern += t_pattern_space;
-						t_pattern += t_pattern_name;
-						t_pattern += t_pattern_last;
-					}
+					string t_pattern = string.Format("{0}{1}{2}{3}","interface","(?<space>[\\r\\n \\t]*)",System.IO.Path.GetFileNameWithoutExtension(a_path),"(?<last>[\\r\\n \\t<:])");
 
 					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(a_codetext,t_pattern,System.Text.RegularExpressions.RegexOptions.Multiline);
 					if(t_match.Success == true){
-						string t_value_space = ReplaceEscapeSequence(t_match.Groups["space"].Value);
-						string t_value_last = ReplaceEscapeSequence(t_match.Groups["last"].Value);
+						string t_value_space = Inner_ReplaceEscapeSequence(t_match.Groups["space"].Value);
+						string t_value_last = Inner_ReplaceEscapeSequence(t_match.Groups["last"].Value);
 
 						UnityEngine.Debug.Log(string.Format("path = {0} : keyword = {1} : space = [{2}][{3}]\n{4}",a_path,t_findkeyword,t_value_space,t_value_last,a_codetext));
 
@@ -191,23 +156,12 @@ namespace BlueBack.Code.Editor
 				}break;
 			case KeywordType.Class:
 				{
-					string t_pattern_keyword = "class";
-					string t_pattern_space = "(?<space>[\\r\\n \\t]*)";
-					string t_pattern_name = System.IO.Path.GetFileNameWithoutExtension(a_path);
-					string t_pattern_last = "(?<last>[\\r\\n \\t<:]*)";
-
-					string t_pattern = "";
-					{
-						t_pattern += t_pattern_keyword ;
-						t_pattern += t_pattern_space;
-						t_pattern += t_pattern_name;
-						t_pattern += t_pattern_last;
-					}
+					string t_pattern = string.Format("{0}{1}{2}{3}","class","(?<space>[\\r\\n \\t]*)",System.IO.Path.GetFileNameWithoutExtension(a_path),"(?<last>[\\r\\n \\t<:])");
 
 					System.Text.RegularExpressions.Match t_match = System.Text.RegularExpressions.Regex.Match(a_codetext,t_pattern,System.Text.RegularExpressions.RegexOptions.Multiline);
 					if(t_match.Success == true){
-						string t_value_space = ReplaceEscapeSequence(t_match.Groups["space"].Value);
-						string t_value_last = ReplaceEscapeSequence(t_match.Groups["last"].Value);
+						string t_value_space = Inner_ReplaceEscapeSequence(t_match.Groups["space"].Value);
+						string t_value_last = Inner_ReplaceEscapeSequence(t_match.Groups["last"].Value);
 
 						UnityEngine.Debug.Log(string.Format("path = {0} : keyword = {1} : space = [{2}][{3}]\n{4}",a_path,t_findkeyword,t_value_space,t_value_last,a_codetext));
 
@@ -216,7 +170,10 @@ namespace BlueBack.Code.Editor
 						UnityEngine.Debug.LogError(string.Format("{0} : {1}",a_path,a_codetext));
 					}
 				}break;
-
+			default:
+				{
+					UnityEngine.Debug.LogError(string.Format("error : {0}",t_findkeyword));
+				}break;
 			}
 		}
 	}

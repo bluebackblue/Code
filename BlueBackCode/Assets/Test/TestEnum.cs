@@ -4,10 +4,10 @@
 */
 namespace X
 {
-	
+
 	internal
-	 enum
-	  TestEnum: int
+		enum
+			TestEnum: int
 	{
 	}
 }

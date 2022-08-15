@@ -17,40 +17,34 @@ namespace BlueBack.Code
 	{
 		/** Replace
 		*/
-		public static void Replace(string a_data)
+		public static string Replace(string a_data)
 		{
-			UnityEngine.Debug.Log(string.Format("ARGUMENT : {0}",a_data));
+			string t_data = a_data;;
 
-			string t_data;
-
-			string t_comment = "XXX";
-
-			//「\\r」の後に「\\n」が来ない場合がある。
+			//「\\r」の後に「\\n」が来ない。
 			{
-				if(System.Text.RegularExpressions.Regex.IsMatch(a_data,"[\\r][^\\n]") == true){
+				if(System.Text.RegularExpressions.Regex.IsMatch(t_data,"[\\r][^\\n]") == true){
 					UnityEngine.Debug.LogError("ReturnError");
 				}
 			}
 
+			//1行コメント。
 			{
 				string t_pattern_comment = "//(?<comment>([^\\r\\n])*)(?<return>(\\r)?\\n)";
-				t_data = System.Text.RegularExpressions.Regex.Replace(a_data,t_pattern_comment,(System.Text.RegularExpressions.Match a_a_match)=>{
-
-					UnityEngine.Debug.Log(string.Format("RETURN : [{0}] : COMMENT : [{1}]",a_a_match.Groups["return"].Value.Replace("\r","<r>").Replace("\n","<n>"),a_a_match.Groups["comment"].Value.Replace("\r","<r>").Replace("\n","<n>")));
-
-					return t_comment + a_a_match.Groups["return"].Value;
+				t_data = System.Text.RegularExpressions.Regex.Replace(t_data,t_pattern_comment,(System.Text.RegularExpressions.Match a_a_match)=>{
+					return a_a_match.Groups["return"].Value;
 				},System.Text.RegularExpressions.RegexOptions.Multiline);
 			}
 
+			//複数行コメント。
 			{
 				string t_pattern_comment = "(?<comment>/\\*([^\\*]|\\*[^/])*\\*/)";
 				t_data = System.Text.RegularExpressions.Regex.Replace(t_data,t_pattern_comment,(System.Text.RegularExpressions.Match a_a_match)=>{
-					UnityEngine.Debug.Log(string.Format("COMMENT : [{0}]",a_a_match.Groups["comment"].Value.Replace("\r","<r>").Replace("\n","<n>")));
-					return t_comment + "";
+					return "";
 				},System.Text.RegularExpressions.RegexOptions.Multiline);
 			}
 
-			UnityEngine.Debug.Log(string.Format("DATA : {0}",t_data));
+			return t_data;
 		}
 	}
 }
